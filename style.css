@@ -3,3 +3,11 @@
     height: 100px;
     cursor: pointer;
 }
+
+.hover-success {
+    color: #6ec76e;
+}
+
+.hover-danger {
+    color: #fd8282;
+}

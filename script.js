@@ -8,6 +8,24 @@ const restart = document.querySelector('#restart');
 const box = document.querySelectorAll('.box');
 
 box.forEach(function(elem,key){
+    elem.addEventListener('mouseover', function(){
+        let [room] = elem.children;
+        const player = getPlayer();
+        const mark = (player === 'player1') ? 'O' : 'X';
+        if(!gameArray[key]){
+            room.innerText = mark;
+            (mark === 'O') ? elem.classList.add('hover-success') : elem.classList.add('hover-danger');
+        }
+    });
+    elem.addEventListener('mouseout', function(){
+        let [room] = elem.children;
+        const player = getPlayer();
+        const mark = (player === 'player1') ? 'O' : 'X';
+        if(!gameArray[key]){
+            room.innerText = '';
+            (mark === 'O') ? elem.classList.remove('hover-success') : elem.classList.remove('hover-danger');
+        }
+    });
     elem.addEventListener('click', function(){
         let [room] = elem.children;
         const player = getPlayer();
@@ -36,7 +54,7 @@ box.forEach(function(elem,key){
             gameOver();
             scoreUpdate();
         }
-    })
+    });
 });
 
 function getPlayer(){
@@ -89,6 +107,8 @@ document.querySelector('#restart-btn')
         elem.style.cursor = 'pointer';
         elem.classList.remove('text-success');
         elem.classList.remove('text-danger');
+        elem.classList.remove('hover-success');
+        elem.classList.remove('hover-danger');
     });
 });
 
